@@ -1,0 +1,24 @@
+# Da R5 nur noch mit UTF8 arbeitet, entfällt der "utf8"-Suffix
+
+# Die Keys sollten mit dem Addonnamen beginnen, da sie so innerhalb des Addons vereinfacht abgefragt werden können
+
+gpimporter_title = r4 - Importer
+
+gpimporter_main = Import
+
+gpimporter_config = Einstellungen
+gpimporter_config_url = URL
+gpimporter_config_ids = IDs
+gpimporter_config_save = Einstellungen speichern
+gpimporter_config_saved = Einstellungen wurden gespeichert!
+gpimporter_file_extract = Zip-Archiv entpacken
+gpimporter_file_extract_failed = Zip-Archiv konnte nicht entpackt werden
+gpimporter_file_extracted = Zip-Archiv entpackt
+gpimporter_file_uploaded = Datei geladen
+gpimporter_file_import = Daten importieren
+gpimporter_file_imported = Daten wurden importiert
+
+# Benennung für die Addonrechte, sichtbar innerhalb der REDAXO-Administration unter Benutzer > Rollen > Allgemein
+
+perm_general_gpimporter[] = Rechte für gpimporter-Addon
+perm_general_gpimporter[config] = Rechte für gpimporter-Addon-Konfiguration
