@@ -64,6 +64,7 @@ class rex_importer {
         $this->insertDbRecord($dest, $rec);
       }
       unlink($file);
+      rex_delete_cache();
       return $data ;
     }
     return FALSE ;
