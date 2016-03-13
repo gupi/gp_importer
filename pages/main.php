@@ -1,6 +1,6 @@
 <?php
-
-$imp = new rex_importer ();
+$conv = new gp_importer();
+$imp = new gp_importer ();
 $e_content = "";
 $i_content = "";
 $extracted = FALSE;
@@ -40,7 +40,7 @@ if (rex_post ( 'file-import', 'boolean' )) {
   $e_content .= rex_view::info ( $this->i18n ( 'file_imported' ) . " - " . $msg );
   }
 }
-$imp = new rex_importer ();
+$imp = new gp_importer ();
 if ($imp->has_input) {
   $files = join ( "<br>", $imp->input_files );
   $pieces = array ();
