@@ -1,6 +1,6 @@
 <?php
 
-class rex_importer {
+class gp_importer {
   var $dest_tables;
   var $dest_structures;
   var $input_files;
@@ -64,6 +64,16 @@ class rex_importer {
         $this->insertDbRecord($dest, $rec);
       }
       unlink($file);
+      switch($dest) {
+        case "rex_module":
+          $conv = new gp_converter();
+          $conv->convertModules();
+          break;
+        case "rex_template":
+          $conv = new gp_converter();
+          $conv->convertTemplates();
+          break;
+      }
       rex_delete_cache();
       return $data ;
     }
