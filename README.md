@@ -9,4 +9,4 @@ rex_clang
 rex_module
 rex_module_action
 
-Data updates within these tables are not yet implemented. I will add this feature asap.
+Data updates within these tables are now implemented.
