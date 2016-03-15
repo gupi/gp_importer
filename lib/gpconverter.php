@@ -4,12 +4,14 @@ class gp_converter {
   
   var $pattern;
   var $mapping;
+  var $simple_mapping;
   var $db;
 
   function __construct() {
     $this->db = rex_sql::factory ();
     $this->setPattern ();
     $this->setMapping ();
+    $this->setSimpleMapping ();
   }
 
   function setPattern() {
@@ -30,11 +32,16 @@ class gp_converter {
     $this->pattern ['temp'] = '|REX_TEMPLATE\[(\d*)\]|';
   }
 
+  function setSimpleMapping () {
+    $this->simple_mapping['rex_a79_textile'] = 'rex_textile::parse';
+    $this->simple_mapping['rex_a79_help_overview()'] = '// rex_a79_help_overview()';
+  }
+  
   function setMapping() {
     $this->mapping = array ();
     /* OOAddon */
     $this->mapping ['OOAddon'] ["isAvailable"] = array (
-      'rex_addon::isInstalled',
+      'rex_addon::exists',
       '' 
     );
     /* OOArticle */
@@ -158,7 +165,8 @@ class gp_converter {
       'OOAddon',
       'OOCategory',
       'OOMedia',
-      'OOMediaCategory' 
+      'OOMediaCategory',
+      'simple'
     ) ) );
     $output = addslashes ( $this->makeUp ( stripslashes ( $mod [0] ['output'] ), array (
       'dollar_rex',
@@ -166,7 +174,8 @@ class gp_converter {
       'OOAddon',
       'OOCategory',
       'OOMedia',
-      'OOMediaCategory' 
+      'OOMediaCategory',
+      'simple'
     ) ) );
     $this->db->setQuery ( "UPDATE `rex_module` SET `input`='$input', `output`='$output' WHERE `id`=$id;" );
   }
@@ -246,6 +255,11 @@ class gp_converter {
             if ($this->mapping [$map][$match [1]][0]) {
               $string = str_replace ( $search, $replace, $string );
             }
+          }
+          break;
+        case "simple" :
+          foreach ($this->simple_mapping as $k=>$v) {
+            $string = str_replace ( $k, $v, $string );
           }
           break;
       }
